@@ -24,11 +24,6 @@ class OrderItem implements ModelInterface
     private $productReference;
 
     /**
-     * @var string The preferred shipping level
-     */
-    private $shippingLevel;
-
-    /**
      * @var string Title of the product
      */
     private $title;
@@ -122,25 +117,6 @@ class OrderItem implements ModelInterface
     public function setProductReference(string $productReference)
     {
         $this->productReference = $productReference;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getShippingLevel()
-    {
-        return $this->shippingLevel;
-    }
-
-    /**
-     * @param string $shippingLevel
-     * @return $this
-     */
-    public function setShippingLevel(string $shippingLevel)
-    {
-        $this->shippingLevel = $shippingLevel;
 
         return $this;
     }
@@ -383,7 +359,6 @@ class OrderItem implements ModelInterface
         $data = [
             'reference' => $this->getReference(),
             'product_reference' => $this->getProductReference(),
-            'shipping_level' => $this->getShippingLevel(),
             'title' => $this->getTitle(),
             'count' => $this->getCount(),
             'files' => [],
@@ -425,10 +400,7 @@ class OrderItem implements ModelInterface
         $validator->required('product_reference');
         $validator->required('count')->numeric();
         $validator->required('files')->isArray();
-
-        if (!$this->getQuote()) {
-            $validator->required('shipping_level');
-        }
+        $validator->required('quote');
 
         $result = $validator->validate($data);
 
