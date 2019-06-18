@@ -2,7 +2,7 @@
     "name": "cloudprinter/cloudapps",
     "description": "The library that help developers easily integrate with CloudPrinter CloudApps API.",
     "type": "library",
-    "license": "cloudprinter.com",
+    "license": "cloudprintercom",
     "authors": [
         {
             "name": "Vasyl Kushniruk",
