@@ -22,8 +22,8 @@ class ProductActionTest extends TestCase
 
     public function setUp()
     {
-        $apiKey = 123;
-        $client = new CloudAppsClient($apiKey);
+        $accessToken = 123;
+        $client = new CloudAppsClient($accessToken);
         $this->productAction = new ProductAction($client);
     }
 

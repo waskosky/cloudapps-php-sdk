@@ -2,10 +2,10 @@
 
 use CloudPrinter\CloudApps\Client\CloudAppsClient;
 
-$apiKey = '***';
+$accessToken = '***';
 $quoteHash = '123';
 
-$client = new CloudAppsClient($apiKey);
+$client = new CloudAppsClient($accessToken);
 $response = $client->order->quoteInfo($quoteHash);
 
 print_r($response->getData());

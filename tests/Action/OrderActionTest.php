@@ -24,8 +24,8 @@ class OrderActionTest extends TestCase
 
     public function setUp()
     {
-        $apiKey = 123;
-        $client = new CloudAppsClient($apiKey);
+        $accessToken = 123;
+        $client = new CloudAppsClient($accessToken);
         $this->orderAction = new OrderAction($client);
     }
 

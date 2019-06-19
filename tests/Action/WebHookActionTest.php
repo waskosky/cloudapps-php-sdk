@@ -22,8 +22,8 @@ class WebHookActionTest extends TestCase
 
     public function setUp()
     {
-        $apiKey = 123;
-        $client = new CloudAppsClient($apiKey);
+        $accessToken = 123;
+        $client = new CloudAppsClient($accessToken);
         $this->webHookAction = new WebHookAction($client);
     }
 

@@ -36,15 +36,15 @@ class CloudAppsClient implements ClientInterface
     /**
      * @var string
      */
-    protected $apiKey;
+    protected $accessToken;
 
     /**
      * CloudCoreClient constructor.
-     * @param string $apiKey
+     * @param string $accessToken
      */
-    public function __construct(string $apiKey)
+    public function __construct(string $accessToken)
     {
-        $this->apiKey = $apiKey;
+        $this->accessToken = $accessToken;
         $this->order = new OrderAction($this);
         $this->product = new ProductAction($this);
         $this->webHook = new WebHookAction($this);
@@ -65,9 +65,9 @@ class CloudAppsClient implements ClientInterface
      * Get base CloudPrinter api url
      * @return string
      */
-    public function getApiKey()
+    public function getAccessToken()
     {
-        return $this->apiKey;
+        return $this->accessToken;
     }
 
     /**
@@ -81,7 +81,7 @@ class CloudAppsClient implements ClientInterface
         $config = [
             'base_url' => $this->getBaseUrl(),
             'defaults' => [
-                'headers' => ['Authorization' => 'Bearer ' . $this->getApiKey()]
+                'headers' => ['Authorization' => 'Bearer ' . $this->getAccessToken()]
             ]
         ];
         $httpClient = new HttpClient($config);

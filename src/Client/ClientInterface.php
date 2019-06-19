@@ -20,7 +20,7 @@ interface ClientInterface
      * Get access token
      * @return string
      */
-    public function getApiKey();
+    public function getAccessToken();
 
     /**
      * Make simple request

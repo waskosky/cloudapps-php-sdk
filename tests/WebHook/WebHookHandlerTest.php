@@ -16,9 +16,9 @@ class WebHookHandlerTest extends TestCase
 {
     public function testOn()
     {
-        $apiKey = '123';
+        $webHookApiKey = '123';
         $webHookHandler = $this->getMockBuilder(WebHookHandler::class)
-            ->setConstructorArgs([$apiKey])
+            ->setConstructorArgs([$webHookApiKey])
             ->setMethods(['getWebHookData'])
             ->getMock();
 
@@ -45,9 +45,9 @@ class WebHookHandlerTest extends TestCase
 
     public function testOnFail()
     {
-        $apiKey = '111';
+        $webHookApiKey = '111';
         $webHookHandler = $this->getMockBuilder(WebHookHandler::class)
-            ->setConstructorArgs([$apiKey])
+            ->setConstructorArgs([$webHookApiKey])
             ->setMethods(['getWebHookData'])
             ->getMock();
 
@@ -74,9 +74,9 @@ class WebHookHandlerTest extends TestCase
 
     public function testAll()
     {
-        $apiKey = '123';
+        $webHookApiKey = '123';
         $webHookHandler = $this->getMockBuilder(WebHookHandler::class)
-            ->setConstructorArgs([$apiKey])
+            ->setConstructorArgs([$webHookApiKey])
             ->setMethods(['getWebHookData'])
             ->getMock();
 

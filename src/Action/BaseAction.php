@@ -45,6 +45,6 @@ class BaseAction
      */
     private function getAuthorization()
     {
-        return 'Bearer ' . $this->client->getApiKey();
+        return 'Bearer ' . $this->client->getAccessToken();
     }
 }

@@ -2,8 +2,8 @@
 
 use CloudPrinter\CloudApps\Client\CloudAppsClient;
 
-$apiKey = '***';
-$client = new CloudAppsClient($apiKey);
+$accessToken = '***';
+$client = new CloudAppsClient($accessToken);
 $response = $client->shipping->getLevels();
 
 print_r($response->getData());

@@ -2,9 +2,9 @@
 
 use CloudPrinter\CloudApps\Client\CloudAppsClient;
 
-$apiKey = '***';
+$accessToken = '***';
 $url = 'test.com';
-$client = new CloudAppsClient($apiKey);
+$client = new CloudAppsClient($accessToken);
 $response = $client->webHook->subscribe($url);
 
 print_r($response->getData());

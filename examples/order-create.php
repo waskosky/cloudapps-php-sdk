@@ -4,8 +4,8 @@ use CloudPrinter\CloudApps\Client\CloudAppsClient;
 use CloudPrinter\CloudApps\Exception\ValidationException;
 use CloudPrinter\CloudApps\Model\{Address, File, OrderItem, Order, Option};
 
-$apiKey = '***';
-$client = new CloudAppsClient($apiKey);
+$accessToken = '***';
+$client = new CloudAppsClient($accessToken);
 
 $address = new Address();
 $address->setEmail('test@mail.com')

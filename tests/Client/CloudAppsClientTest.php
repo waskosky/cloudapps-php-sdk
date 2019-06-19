@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
 class CloudAppsClientTest extends TestCase
 {
     const BASE_URL = 'https://api.cloudprinter.com/cloudapps/1.0/';
-    const API_KEY = '123123';
+    const ACCESS_TOKEN = '123123';
 
     /**
      * @var CloudAppsClient
@@ -24,7 +24,7 @@ class CloudAppsClientTest extends TestCase
 
     public function setUp()
     {
-        $this->cloudAppsClient = new CloudAppsClient(self::API_KEY);
+        $this->cloudAppsClient = new CloudAppsClient(self::ACCESS_TOKEN);
     }
 
     public function testGetBaseUrl()
@@ -35,8 +35,8 @@ class CloudAppsClientTest extends TestCase
 
     public function testGetApiKey()
     {
-        $apiKey = $this->cloudAppsClient->getApiKey();
-        $this->assertEquals(self::API_KEY, $apiKey);
+        $accessToken = $this->cloudAppsClient->getAccessToken();
+        $this->assertEquals(self::ACCESS_TOKEN, $accessToken);
     }
 
     public function testMakeRequest()

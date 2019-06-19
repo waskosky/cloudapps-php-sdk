@@ -4,8 +4,8 @@ use CloudPrinter\CloudApps\Client\CloudAppsClient;
 use CloudPrinter\CloudApps\Exception\ValidationException;
 use CloudPrinter\CloudApps\Model\{Option, OrderQuote, OrderQuoteItem};
 
-$apiKey = '***';
-$client = new CloudAppsClient($apiKey);
+$accessToken = '***';
+$client = new CloudAppsClient($accessToken);
 
 $option = new Option();
 $option->setOptionReference('paper_90off')
