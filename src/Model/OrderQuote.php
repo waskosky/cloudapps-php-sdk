@@ -113,9 +113,10 @@ class OrderQuote implements ModelInterface, CountryInterface
             $data['items'][] = $item->toArray();
         }
 
-        $this->validate($data);
+        $dataFiltered = array_filter($data);
+        $this->validate($dataFiltered);
 
-        return $data;
+        return $dataFiltered;
     }
 
     /**

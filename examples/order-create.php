@@ -26,7 +26,6 @@ $item = new OrderItem();
 $item->setReference('item-1')
     ->setCount(1)
     ->setProductReference('textbook_cw_a6_p_bw')
-    ->setShippingLevel('cp_saver')
     ->addFile($file)
     ->addOption(new Option('cover_finish_gloss', 1))
     ->addOption(new Option('pageblock_80off', 1))
