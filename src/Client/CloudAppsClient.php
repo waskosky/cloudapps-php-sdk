@@ -12,7 +12,7 @@ use CloudPrinter\CloudApps\Http\Response;
 
 /**
  * Class CloudAppsClient
- *+
+ *
  * @copyright   2019 by CloudPrinter
  * @author      Vasyl Kushniruk <kushniruk92@gmail.com>
  */
