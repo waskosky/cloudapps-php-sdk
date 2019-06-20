@@ -24,9 +24,9 @@ interface ClientInterface
 
     /**
      * Make simple request
-     * @param string $uri
+     * @param string $url
      * @param array|null $data
      * @return mixed
      */
-    public function makeRequest(string $uri, array $data = null);
+    public function makeRequest(string $url, array $data = null);
 }

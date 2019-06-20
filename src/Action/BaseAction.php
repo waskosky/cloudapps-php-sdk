@@ -31,13 +31,12 @@ class BaseAction
     {
         $this->client = $client;
 
-        $config = [
-            'base_url' => $client->getBaseUrl(),
-            'defaults' => [
-                'headers' => ['Authorization' => $this->getAuthorization()]
-            ]
+        $baseUrl = $client->getBaseUrl();
+        $httpHeaders = [
+            'Authorization: ' . $this->getAuthorization(),
+            'Content-Type: application/json'
         ];
-        $this->httpClient = new HttpClient($config);
+        $this->httpClient = new HttpClient($baseUrl, $httpHeaders);
     }
 
     /**

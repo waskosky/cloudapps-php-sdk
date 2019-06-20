@@ -71,21 +71,22 @@ class CloudAppsClient implements ClientInterface
     }
 
     /**
-     * @param string $uri
+     * @param string $url
      * @param array $data
      * @param string $method
      * @return Response
      */
-    public function makeRequest(string $uri, array $data = null, $method = 'post')
+    public function makeRequest(string $url, array $data = null, $method = 'post')
     {
-        $config = [
-            'base_url' => $this->getBaseUrl(),
-            'defaults' => [
-                'headers' => ['Authorization' => 'Bearer ' . $this->getAccessToken()]
-            ]
+        $baseUrl = $this->getBaseUrl();
+        $httpHeaders = [
+            'Authorization: Bearer' . $this->getAccessToken(),
+            'Content-Type: application/json'
         ];
-        $httpClient = new HttpClient($config);
-        $response = $httpClient->makeRequest($uri, $data, $method);
+
+        $httpClient = new HttpClient($baseUrl, $httpHeaders);
+        $url = $this->getBaseUrl() . $url;
+        $response = $httpClient->makeRequest($url, $data, $method);
 
         return $response;
     }

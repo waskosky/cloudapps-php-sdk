@@ -18,7 +18,7 @@ composer require cloudprinter/cloudapps
 ## Prerequisites
 * composer (for installation)
 * php 7.0 or above
-* json, fileinfo extensions must be enabled
+* json, fileinfo, curl extensions must be enabled
 * Cloudprinter.com Print Cloud account
 
 ## Creating an app

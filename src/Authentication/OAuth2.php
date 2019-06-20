@@ -54,6 +54,12 @@ class OAuth2
      */
     public function getAccessToken(string $code): Response
     {
+        $baseUrl = self::BASE_AUTH_URL;
+        $headers = [
+            'Content-Type: application/json'
+        ];
+        $httpClient = new HttpClient($baseUrl, $headers);
+
         $data = [
             'code' => $code,
             'client_id' => $this->config['client_id'],
@@ -61,8 +67,6 @@ class OAuth2
             'redirect_uri' => $this->config['redirect_uri'],
             'grant_type' => 'authorization_code'
         ];
-        $config = ['base_url' => self::BASE_AUTH_URL];
-        $httpClient = new HttpClient($config);
         $response = $httpClient->makeRequest('oauth2/token', $data);
 
         return $response;
