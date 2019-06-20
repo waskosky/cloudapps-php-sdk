@@ -1,29 +1,29 @@
 <?php
 
-namespace CloudPrinter\CloudApps\Tests\WebHook;
+namespace CloudPrinter\CloudApps\Tests\CloudSignal;
 
-use CloudPrinter\CloudApps\Exception\WebHookApiKeyException;
-use CloudPrinter\CloudApps\WebHook\WebHookHandler;
+use CloudPrinter\CloudApps\Exception\CloudSignalApiKeyException;
+use CloudPrinter\CloudApps\CloudSignal\CloudSignalHandler;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class WebHookHandlerTest
+ * Class CloudSignalHandlerTest
  *
  * @copyright   2019 by CloudPrinter
  * @author      Vasyl Kushniruk <kushniruk92@gmail.com>
  */
-class WebHookHandlerTest extends TestCase
+class CloudSignalHandlerTest extends TestCase
 {
     public function testOn()
     {
-        $webHookApiKey = '123';
-        $webHookHandler = $this->getMockBuilder(WebHookHandler::class)
-            ->setConstructorArgs([$webHookApiKey])
-            ->setMethods(['getWebHookData'])
+        $cloudSignalApiKey = '123';
+        $cloudSignalHandler = $this->getMockBuilder(CloudSignalHandler::class)
+            ->setConstructorArgs([$cloudSignalApiKey])
+            ->setMethods(['getSignalData'])
             ->getMock();
 
-        $webHookHandler->expects($this->any())
-            ->method('getWebHookData')
+        $cloudSignalHandler->expects($this->any())
+            ->method('getSignalData')
             ->willReturn([
                 "apikey" => "123",
                 "type" => "ItemShipped",
@@ -36,7 +36,7 @@ class WebHookHandlerTest extends TestCase
                 "shipping_option" => "postal"
             ]);
 
-        $webHookHandler->on(['ItemShipped', 'ItemError'], function ($webHookData) {
+        $cloudSignalHandler->on(['ItemShipped', 'ItemError'], function ($signalData) {
             echo 'ItemShipped';
         });
 
@@ -45,14 +45,14 @@ class WebHookHandlerTest extends TestCase
 
     public function testOnFail()
     {
-        $webHookApiKey = '111';
-        $webHookHandler = $this->getMockBuilder(WebHookHandler::class)
-            ->setConstructorArgs([$webHookApiKey])
-            ->setMethods(['getWebHookData'])
+        $cloudSignalApiKey = '111';
+        $cloudSignalHandler = $this->getMockBuilder(CloudSignalHandler::class)
+            ->setConstructorArgs([$cloudSignalApiKey])
+            ->setMethods(['getSignalData'])
             ->getMock();
 
-        $webHookHandler->expects($this->any())
-            ->method('getWebHookData')
+        $cloudSignalHandler->expects($this->any())
+            ->method('getSignalData')
             ->willReturn([
                 "apikey" => "123",
                 "type" => "ItemShipped",
@@ -65,23 +65,23 @@ class WebHookHandlerTest extends TestCase
                 "shipping_option" => "postal"
             ]);
 
-        $this->expectException(WebHookApiKeyException::class);
+        $this->expectException(CloudSignalApiKeyException::class);
 
-        $webHookHandler->on(['ItemShipped', 'ItemError'], function ($webHookData) {
+        $cloudSignalHandler->on(['ItemShipped', 'ItemError'], function ($signalData) {
             echo 'ItemShipped';
         });
     }
 
     public function testAll()
     {
-        $webHookApiKey = '123';
-        $webHookHandler = $this->getMockBuilder(WebHookHandler::class)
-            ->setConstructorArgs([$webHookApiKey])
-            ->setMethods(['getWebHookData'])
+        $cloudSignalApiKey = '123';
+        $cloudSignalHandler = $this->getMockBuilder(CloudSignalHandler::class)
+            ->setConstructorArgs([$cloudSignalApiKey])
+            ->setMethods(['getSignalData'])
             ->getMock();
 
-        $webHookHandler->expects($this->any())
-            ->method('getWebHookData')
+        $cloudSignalHandler->expects($this->any())
+            ->method('getSignalData')
             ->willReturn([
                 "apikey" => "123",
                 "type" => "ItemShipped",
@@ -94,7 +94,7 @@ class WebHookHandlerTest extends TestCase
                 "shipping_option" => "postal"
             ]);
 
-        $webHookHandler->onAll(function ($webHookData) {
+        $cloudSignalHandler->onAll(function ($signalData) {
             echo 'ItemShipped';
         });
 

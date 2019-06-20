@@ -1,12 +1,12 @@
 <?php
 
-namespace CloudPrinter\CloudApps\WebHook;
+namespace CloudPrinter\CloudApps\CloudSignal;
 
-use CloudPrinter\CloudApps\Exception\WebHookApiKeyException;
+use CloudPrinter\CloudApps\Exception\CloudSignalApiKeyException;
 use CloudPrinter\CloudApps\Http\Request;
 
 /**
- * Class WebHookHandler
+ * Class CloudSignalHandler
  *
  * @copyright   2019 by CloudPrinter
  * @author      Vasyl Kushniruk <kushniruk92@gmail.com>
@@ -22,38 +22,38 @@ use CloudPrinter\CloudApps\Http\Request;
  * @method onItemCanceled(callable $callBackFunction)
  * @method onAll(callable $callBackFunction)
  */
-class WebHookHandler
+class CloudSignalHandler
 {
     const ALL_SIGNALS = 'All';
 
     /** @var string */
-    private $webHookApiKey;
+    private $cloudSignalApiKey;
 
     /**
-     * WebHookHandler constructor.
-     * @param $webHookApiKey
+     * CloudSignalHandler constructor.
+     * @param $cloudSignalApiKey
      */
-    public function __construct($webHookApiKey)
+    public function __construct($cloudSignalApiKey)
     {
-        $this->webHookApiKey = $webHookApiKey;
+        $this->cloudSignalApiKey = $cloudSignalApiKey;
     }
 
     /**
      * Handle all possible signals.
      * @param $name
      * @param $arguments
-     * @throws WebHookApiKeyException
+     * @throws CloudSignalApiKeyException
      */
     public function __call($name, $arguments)
     {
         $signalName = preg_replace('/^on/', '', $name);
-        $webHookData = $this->getWebHookData();
+        $signalData = $this->getSignalData();
 
-        if ($webHookData) {
-            $this->validateWebHookData($webHookData);
+        if ($signalData) {
+            $this->validateSignalData($signalData);
 
-            if (!empty($webHookData['type']) && in_array($signalName, [$webHookData['type'], self::ALL_SIGNALS])) {
-                $arguments[0]($webHookData);
+            if (!empty($signalData['type']) && in_array($signalName, [$signalData['type'], self::ALL_SIGNALS])) {
+                $arguments[0]($signalData);
             }
         }
     }
@@ -62,29 +62,29 @@ class WebHookHandler
      * Allows handle more than one signal types in one function.
      * @param array $signals
      * @param callable $handlerFunction
-     * @throws WebHookApiKeyException
+     * @throws CloudSignalApiKeyException
      */
     public function on(array $signals, callable $handlerFunction)
     {
-        $webHookData = $this->getWebHookData();
+        $signalData = $this->getSignalData();
 
-        if ($webHookData) {
-            $this->validateWebHookData($webHookData);
+        if ($signalData) {
+            $this->validateSignalData($signalData);
 
-            if (in_array($webHookData['type'], $signals)) {
-                $handlerFunction($webHookData);
+            if (in_array($signalData['type'], $signals)) {
+                $handlerFunction($signalData);
             }
         }
     }
 
     /**
-     * @param array $webHookData
-     * @throws WebHookApiKeyException
+     * @param array $signalData
+     * @throws CloudSignalApiKeyException
      */
-    private function validateWebHookData(array $webHookData)
+    private function validateSignalData(array $signalData)
     {
-        if (empty($webHookData['apikey']) || $webHookData['apikey'] != $this->webHookApiKey) {
-            throw new WebHookApiKeyException();
+        if (empty($signalData['apikey']) || $signalData['apikey'] != $this->cloudSignalApiKey) {
+            throw new CloudSignalApiKeyException();
         }
     }
 
@@ -92,7 +92,7 @@ class WebHookHandler
      * Reading HTTP request data from a JSON POST.
      * @return array
      */
-    public function getWebHookData(): array
+    public function getSignalData(): array
     {
         $request = new Request();
 
