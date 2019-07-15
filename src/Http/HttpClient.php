@@ -27,8 +27,8 @@ class HttpClient
      */
     public function __construct(string $baseUrl, array $httpHeaders)
     {
-        $this->baseUrl = $baseUrl;
         $this->httpHeaders = $httpHeaders;
+        $this->setBaseUrl($baseUrl);
     }
 
     /**
@@ -45,6 +45,15 @@ class HttpClient
     public function getBaseUrl()
     {
         return $this->baseUrl;
+    }
+
+    /**
+     * @param string $baseUrl
+     * @return string
+     */
+    public function setBaseUrl(string $baseUrl)
+    {
+        $this->baseUrl = $baseUrl;
     }
 
     /**

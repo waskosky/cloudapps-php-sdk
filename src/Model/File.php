@@ -130,10 +130,10 @@ class File implements ModelInterface
         $validator->required('type');
         $validator->required('md5sum');
         $validator->required('url')->callback(function ($value) {
-            $file_info = new \finfo(FILEINFO_MIME_TYPE);
-            $mime_type = $file_info->buffer(file_get_contents($value));
+            $fileInfo = new \finfo(FILEINFO_MIME_TYPE);
+            $mimeType = $fileInfo->buffer(file_get_contents($value));
 
-            if ($mime_type != 'application/pdf') {
+            if ($mimeType != 'application/pdf') {
                 throw new InvalidValueException(
                     'The file is not a pdf ',
                     'url'

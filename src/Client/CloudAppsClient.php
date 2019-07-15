@@ -6,6 +6,7 @@ use CloudPrinter\CloudApps\Action\OrderAction;
 use CloudPrinter\CloudApps\Action\PriceAction;
 use CloudPrinter\CloudApps\Action\ProductAction;
 use CloudPrinter\CloudApps\Action\ShippingAction;
+use CloudPrinter\CloudApps\Action\UserAction;
 use CloudPrinter\CloudApps\Action\WebHookAction;
 use CloudPrinter\CloudApps\Http\HttpClient;
 use CloudPrinter\CloudApps\Http\Response;
@@ -18,6 +19,11 @@ use CloudPrinter\CloudApps\Http\Response;
  */
 class CloudAppsClient implements ClientInterface
 {
+    /**
+     * Base url for CloudApps.
+     */
+    const CLOUD_APPS_URL = 'https://api.cloudprinter.com/cloudapps/1.0/';
+
     /** @var OrderAction */
     public $order;
 
@@ -32,6 +38,9 @@ class CloudAppsClient implements ClientInterface
 
     /** @var PriceAction */
     public $price;
+
+    /** @var UserAction */
+    public $user;
 
     /**
      * @var string
@@ -50,6 +59,7 @@ class CloudAppsClient implements ClientInterface
         $this->webHook = new WebHookAction($this);
         $this->shipping = new ShippingAction($this);
         $this->price = new PriceAction($this);
+        $this->user = new UserAction($this);
     }
 
     /**
@@ -58,7 +68,7 @@ class CloudAppsClient implements ClientInterface
      */
     public function getBaseUrl()
     {
-        return 'https://api.cloudprinter.com/cloudapps/1.0/';
+        return self::CLOUD_APPS_URL;
     }
 
     /**
