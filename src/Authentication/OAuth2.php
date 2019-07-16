@@ -42,7 +42,7 @@ class OAuth2
             'redirect_url=' . $this->config['redirect_uri'],
             'scope' . $this->config['scope'],
             'response_type=code',
-            'state=' . ($this->config['state'] ?? "''")
+            'state=' . ($this->config['state'] ?? "\'\'")
         ];
 
         return self::BASE_AUTH_URL . '/oauth2/authorize?' . join('&', $data);
