@@ -39,10 +39,10 @@ class OAuth2
     {
         $data = [
             'client_id=' . $this->config['client_id'],
-            'redirect_url=' . $this->config['redirect_uri'],
-            'scope' . $this->config['scope'],
+            'redirect_uri=' . $this->config['redirect_uri'],
+            'scope=' . $this->config['scope'],
             'response_type=code',
-            'state=' . ($this->config['state'] ?? "\'\'")
+            'state=' . ($this->config['state'] ?? urlencode('""'))
         ];
 
         return self::BASE_AUTH_URL . '/oauth2/authorize?' . join('&', $data);
