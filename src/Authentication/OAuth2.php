@@ -45,7 +45,7 @@ class OAuth2
             'state=' . ($this->config['state'] ?? urlencode('""'))
         ];
 
-        return self::BASE_AUTH_URL . '/oauth2/authorize?' . join('&', $data);
+        return self::BASE_AUTH_URL . 'oauth2/authorize?' . join('&', $data);
     }
 
     /**

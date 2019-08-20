@@ -20,7 +20,7 @@ class OAuth2Test extends TestCase
     const REDIRECT_URL = 'redirect_url';
     const CLIENT_SECRET = '*secret*';
     const SCOPE = 'read';
-    const AUTH_URL = 'https://api.cloudprinter.com/cloudauth/1.0//oauth2/authorize';
+    const AUTH_URL = 'https://api.cloudprinter.com/cloudauth/1.0/oauth2/authorize';
 
     /**
      * @var OAuth2
@@ -43,11 +43,11 @@ class OAuth2Test extends TestCase
     {
         $authorizationCodeUrl = $this->oAuth2->getAuthorizationCodeUrl();
         $expected = sprintf(
-            "%s?client_id=%s&redirect_url=%s&scoperead&response_type=code&state=''",
+            "%s?client_id=%s&redirect_uri=%s&scope=read&response_type=code&state=",
             self::AUTH_URL,
             self::CLIENT_ID,
             self::REDIRECT_URL
-        );
+        ) . "%22%22";
         $this->assertEquals($expected, $authorizationCodeUrl);
     }
 
