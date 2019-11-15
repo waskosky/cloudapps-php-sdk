@@ -26,6 +26,7 @@ $fileBook = new File();
 $fileBook->setUrl('https://s3-eu-west-1.amazonaws.com/demo.cloudprinter.com/b52f510a5e2419f67c4925153ec0c080_v2/CP_Sample_doc_A4_Book_Interior_Textbook_v2.1.pdf')
     ->setType('book');
 
+$itemQuote = '***';
 $item = new OrderItem();
 $item->setReference('item-1')
     ->setCount(1)
@@ -35,7 +36,8 @@ $item->setReference('item-1')
     ->addOption(new Option('cover_finish_gloss', 1))
     ->addOption(new Option('pageblock_80off', 1))
     ->addOption(new Option('cover_130mcg', 1))
-    ->addOption(new Option('total_pages', 100));
+    ->addOption(new Option('total_pages', 100))
+    ->setQuote($itemQuote);
 
 $order = new Order();
 $order
@@ -50,5 +52,3 @@ try {
 } catch (ValidationException $e) {
     print_r($e->getValidationMessages());
 }
-
-
