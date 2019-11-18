@@ -33,4 +33,17 @@ class ShippingAction extends BaseAction
 
         return $response;
     }
+
+    /**
+     * Get shipping states.
+     * @param string $countryReference
+     * @return Response
+     */
+    public function getStates(string $countryReference): Response
+    {
+        $data = ['country_reference' => $countryReference];
+        $response = $this->httpClient->makeRequest('shipping/states', $data);
+
+        return $response;
+    }
 }

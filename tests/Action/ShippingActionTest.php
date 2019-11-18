@@ -38,4 +38,11 @@ class ShippingActionTest extends TestCase
         $result = $this->shippingAction->getCountries();
         $this->assertInstanceOf(Response::class, $result);
     }
+
+    public function testStates()
+    {
+        $countryReference = 'US';
+        $result = $this->shippingAction->getStates($countryReference);
+        $this->assertInstanceOf(Response::class, $result);
+    }
 }
