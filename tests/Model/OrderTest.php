@@ -4,6 +4,7 @@ namespace CloudPrinter\CloudApps\Tests\Model\CloudApps;
 
 use CloudPrinter\CloudApps\Exception\ValidationException;
 use CloudPrinter\CloudApps\Model\Address;
+use CloudPrinter\CloudApps\Model\File;
 use CloudPrinter\CloudApps\Model\Order;
 use CloudPrinter\CloudApps\Model\OrderItem;
 use PHPUnit\Framework\TestCase;
@@ -21,6 +22,9 @@ class OrderTest extends TestCase
         $item = $this->getMockBuilder(OrderItem::class)
             ->getMock();
 
+        $file = $this->getMockBuilder(File::class)
+            ->getMock();
+
         $address = $this->getMockBuilder(Address::class)
             ->getMock();
 
@@ -33,7 +37,8 @@ class OrderTest extends TestCase
             ->setCurrency('USD')
             ->setHc('test')
             ->addItem($item)
-            ->addAddress($address);
+            ->addAddress($address)
+            ->addFile($file);
 
         $orderAsArray = $order->toArray();
 

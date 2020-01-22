@@ -54,6 +54,11 @@ class Order implements ModelInterface
     private $items = [];
 
     /**
+     * @var array Array of zero or more file objects
+     */
+    private $files = [];
+
+    /**
      * @return string
      */
     public function getReference()
@@ -207,6 +212,25 @@ class Order implements ModelInterface
 
     /**
      * @return array
+     */
+    public function getFiles()
+    {
+        return $this->files;
+    }
+
+    /**
+     * @param File $file
+     * @return $this
+     */
+    public function addFile(File $file)
+    {
+        $this->files[] = $file;
+
+        return $this;
+    }
+
+    /**
+     * @return array
      * @throws ValidationException
      */
     public function toArray()
@@ -221,6 +245,16 @@ class Order implements ModelInterface
             'addresses' => [],
             'items' => [],
         ];
+
+        $files = $this->getFiles();
+        if ($files) {
+            $data['files'] = [];
+
+            /** @var File $file */
+            foreach ($this->getFiles() as $file) {
+                $data['files'][] = $file->toArray();
+            }
+        }
 
         /** @var Address $address */
         foreach ($this->getAddresses() as $address) {

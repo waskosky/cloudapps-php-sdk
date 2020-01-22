@@ -15,6 +15,15 @@ use Particle\Validator\Validator;
 class File implements ModelInterface
 {
     /**
+     * List of supported files mime types
+     * Use for validation.
+     */
+    const FILE_MIME_TYPES = [
+        'application/pdf',
+        'application/zip'
+    ];
+
+    /**
      * @var string The type of file
      */
     private $type;
@@ -132,9 +141,9 @@ class File implements ModelInterface
         $validator->required('url')->callback(function ($value) {
             $mimeType = $this->getFileMimeType($value);
 
-            if ($mimeType != 'application/pdf') {
+            if (!in_array($mimeType, self::FILE_MIME_TYPES)) {
                 throw new InvalidValueException(
-                    'The file is not a pdf',
+                    'The file type is not valid',
                     'url'
                 );
             }
