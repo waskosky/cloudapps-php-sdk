@@ -1,7 +1,7 @@
 # CloudApps PHP SDK
 The Cloudprinter.com PHP SDK is a library with useful features that enable App developers to easily integrate their application with Cloudprinter.com and make requests to our CloudApps API. This PHP SDK makes it easy to set up the integration between your App and the Cloudprinter.com Print Cloud to request instant pricing, post print orders, get production signals back, and more. 
 
-The CloudApps API is exclusively designed for app developers.
+The CloudApps API is exclusively designed for app and platform developers and offers support for multiple users.
 
 We at Cloudprinter.com have connected 150+ printers to print & ship print products in almost any country in the world. Whether this is around the corner or at the other side of the globe, we've got you covered: we can deliver 500+ different products in more than 100 countries currently.
 
