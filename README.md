@@ -11,6 +11,9 @@ Visit our [website](https://www.cloudprinter.com) for more information on all th
 
 Follow the [link](https://github.com/cloudprintercom/cloudapps-php-sdk/wiki/PHP-SDK-CloudAPPS-documentation) to read the full documentation.
 
+## Full documentation
+Follow the [link](https://github.com/cloudprintercom/cloudapps-php-sdk/wiki/PHP-SDK-CloudAPPS-documentation) to read the full documentation.
+
 ## Installation 
 The CloudApps SDK can be installed with Composer. Run this command:
 ```
@@ -120,5 +123,5 @@ try {
 }
 ```
 
-## Full documentation
+## Read more information
 Follow the [link](https://github.com/cloudprintercom/cloudapps-php-sdk/wiki/PHP-SDK-CloudAPPS-documentation) to read the full documentation.
