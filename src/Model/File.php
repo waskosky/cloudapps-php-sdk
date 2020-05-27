@@ -20,7 +20,8 @@ class File implements ModelInterface
      */
     const FILE_MIME_TYPES = [
         'application/pdf',
-        'application/zip'
+        'application/zip',
+        'application/x-empty'
     ];
 
     /**
