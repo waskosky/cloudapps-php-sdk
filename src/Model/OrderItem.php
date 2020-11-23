@@ -401,7 +401,10 @@ class OrderItem implements ModelInterface
         $validator->required('product_reference');
         $validator->required('count')->numeric();
         $validator->required('files')->isArray();
-        $validator->required('quote');
+
+        if (!$this->isReorderItem()) {
+            $validator->required('quote');
+        }
 
         $result = $validator->validate($data);
 
@@ -410,5 +413,12 @@ class OrderItem implements ModelInterface
         }
 
         return true;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isReorderItem() {
+        return !empty($this->getReorderOrderReference());
     }
 }
