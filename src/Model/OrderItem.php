@@ -13,6 +13,8 @@ use Particle\Validator\Validator;
  */
 class OrderItem implements ModelInterface
 {
+    const STOCK_PRODUCT_TYPE = 'stock';
+
     /**
      * @var string Order reference identifier
      */
@@ -82,6 +84,11 @@ class OrderItem implements ModelInterface
      * @var string A quote hash reference from a quote call
      */
     private $quote;
+
+    /**
+     * @var string Product type
+     */
+    private $type;
 
     /**
      * @return string
@@ -350,6 +357,25 @@ class OrderItem implements ModelInterface
     }
 
     /**
+     * @param string $type
+     * @return $this
+     */
+    public function setType(string $type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
      * Object to array
      * @return array
      * @throws ValidationException
@@ -359,6 +385,7 @@ class OrderItem implements ModelInterface
         $data = [
             'reference' => $this->getReference(),
             'product_reference' => $this->getProductReference(),
+            'type' => $this->getType(),
             'title' => $this->getTitle(),
             'count' => $this->getCount(),
             'files' => [],
@@ -400,7 +427,11 @@ class OrderItem implements ModelInterface
         $validator->required('reference');
         $validator->required('product_reference');
         $validator->required('count')->numeric();
-        $validator->required('files')->isArray();
+
+        $type = $this->getType();
+        if ($type !== self::STOCK_PRODUCT_TYPE) {
+            $validator->required('files')->isArray();
+        }
 
         if (!$this->isReorderItem()) {
             $validator->required('quote');

@@ -57,6 +57,28 @@ class OrderItemTest extends TestCase
         $this->assertArraySubset($expectedSubset, $itemAsArray);
     }
 
+
+    public function testStockOrderItemSuccess()
+    {
+        $item = new OrderItem();
+        $item->setReference('123')
+            ->setProductReference('textbook_cw_a6_p_bw')
+            ->setCount(2)
+            ->setType('stock')
+            ->setQuote('123');
+        $itemAsArray = $item->toArray();
+
+        $expectedSubset = [
+            'reference' => '123',
+            'product_reference' => 'textbook_cw_a6_p_bw',
+            'type' => 'stock',
+            'count' => 2,
+            'quote' => '123'
+        ];
+
+        $this->assertArraySubset($expectedSubset, $itemAsArray);
+    }
+
     public function testOrderItemFail()
     {
         $file = $this->getMockBuilder(File::class)->getMock();
