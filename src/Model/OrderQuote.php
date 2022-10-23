@@ -52,6 +52,11 @@ class OrderQuote implements ModelInterface, CountryInterface
      */
     public function getState()
     {
+        if($this->getCountry() === "BR" && strlen($this->state) === 2)
+        {
+          $this->state = "BR-". $this->state;
+        }
+            
         return $this->state;
     }
 
